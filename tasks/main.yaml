@@ -1,0 +1,69 @@
+---
+- name: Import base
+  import_tasks: base.yaml
+
+- name: Import C utils
+  import_tasks: c.yaml
+
+- name: Import ssh config
+  import_tasks: ssh.yaml
+
+- name: Import snap
+  import_tasks: snap.yaml
+
+- name: Import flatpak
+  import_tasks: flatpak.yaml
+
+- name: Import python tools
+  import_tasks: python.yaml
+
+- name: Import pip
+  import_tasks: pip.yaml
+
+- name: Import devel tools
+  import_tasks: dev_tools.yaml
+
+- name: Import fish
+  import_tasks: fish.yaml
+
+- name: Import git
+  import_tasks: git.yaml
+
+- name: Import github config
+  import_tasks: github.yaml
+
+# - name: Import gitlab config
+#   import_tasks: gitlab.yaml
+#
+# - name: Import pagure config
+#   import_tasks: pagure.yaml
+#
+# - name: Import IDEs
+#   import_tasks: ide.yaml
+
+- name: Import battery optimalization
+  import_tasks: battery_opt.yaml
+
+- name: Import bash config
+  import_tasks: bash.yaml
+
+- name: Import vim config
+  import_tasks: vim.yaml
+
+- name: Import tex
+  import_tasks: tex.yaml
+
+- name: Import containers stuff
+  import_tasks: containers.yaml
+
+- name: Import KDE config
+  import_tasks: kde.yaml
+
+- name: Import conky
+  import_tasks: conky.yaml
+
+- name: Import autostart
+  import_tasks: autostart.yaml
+
+- name: Reboot
+  import_tasks: reboot.yaml

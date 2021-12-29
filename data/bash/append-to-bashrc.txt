@@ -1,0 +1,10 @@
+
+# useful bash aliases
+if [ -e $HOME/.bash_aliases ]; then
+    source $HOME/.bash_aliases
+fi
+
+# useful bash variables (mostly paths)
+if [ -e $HOME/.bash_vars ]; then
+    source $HOME/.bash_vars
+fi

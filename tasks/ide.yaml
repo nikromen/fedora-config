@@ -1,0 +1,6 @@
+---
+- name: Install IDEs
+  flatpak:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ ides }}"

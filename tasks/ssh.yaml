@@ -1,0 +1,18 @@
+---
+- name: Copy ssh config
+  copy:
+    src: ../data/ssh/config
+    dest: /home/{{ ansible_user }}/.ssh
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0600
+
+- name: Instal openssh-server
+  dnf:
+    name: openssh-server
+    state: latest
+
+- name: Install openssh-client
+  dnf:
+    name: openssh-clients
+    state: latest

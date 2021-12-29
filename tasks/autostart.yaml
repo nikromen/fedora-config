@@ -1,0 +1,16 @@
+---
+- name: Create autostart-scripts directory
+  file:
+    path: /home/{{ ansible_user }}/.config/autostart-scripts/
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+    mode: 0755
+
+- name: Add autostart-script conky
+  file:
+    src: /home/{{ ansible_user }}/.conky/conky-startup.sh
+    dest: /home/{{ ansible_user }}/.config/autostart-scripts/conky-startup.sh
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: link

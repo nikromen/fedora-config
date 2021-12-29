@@ -1,0 +1,60 @@
+---
+base_apps:
+  - filezilla
+  - gimp
+  - ark
+  - htop
+  - keepassxc
+  - latte-dock
+  - ocrmypdf
+  - hexchat
+  - xclip
+  - lm_sensors
+
+basic_c_and_cpp_stuff:
+  - cmake
+  - gcc-c++
+  - valgrind
+  - cppcheck
+  - make
+
+base_dev_tools:
+  - haskell-platform
+  - java-latest-openjdk
+  - java-latest-openjdk-devel
+  - packit
+  - golang
+  - hugo
+  - nodejs
+  - npm
+  - dotnet
+
+git_utils:
+  - pre-commit
+  - tig
+  - gitk
+
+ides:
+  - com.jetbrains.PyCharm-Professional
+  - com.visualstudio.code
+
+pip_apps:
+  - konsave
+
+python_dnf_apps:
+  - python3-devel
+  - python3-pygithub
+  - python3-ogr
+
+# without `--classic` arg
+snap_apps:
+  - 0ad
+  - tmnationsforever
+
+flatpak_apps:
+  - com.valvesoftware.Steam
+  - com.obsproject.Studio
+  - com.discordapp.Discord
+  - org.signal.Signal
+  - com.spotify.Client
+  - org.telegram.desktop

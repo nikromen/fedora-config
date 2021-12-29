@@ -1,0 +1,39 @@
+---
+- name: Copy bash aliases to home folder
+  copy:
+    src: ../data/bash/.bash_aliases
+    dest: /home/{{ ansible_user }}/
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0664
+
+- name: Copy bash config to home folder
+  copy:
+    src: ../data/bash/.bash_conf
+    dest: /home/{{ ansible_user }}/
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0664
+
+# command can't handle grep
+- name: Test for bash addons in .bashrc
+  shell: grep -c ".bash_aliases" /home/{{ ansible_user }}/.bashrc || true
+  changed_when: false
+  register: test_addons
+  become_user: "{{ ansible_user }}"
+
+- name: Append bash aliases and vars to .bashrc file
+  blockinfile:
+    path: /home/{{ ansible_user }}/.bashrc
+    block: |
+      # useful bash aliases
+      if [ -e $HOME/.bash_aliases ]; then
+          source $HOME/.bash_aliases
+      fi
+
+      # useful bash variables (mostly paths)
+      if [ -e $HOME/.bash_conf ]; then
+          source $HOME/.bash_conf
+      fi
+
+  when: test_addons.stdout == "0"

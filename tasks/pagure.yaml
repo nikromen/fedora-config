@@ -1,0 +1,13 @@
+---
+- name: Create gitlab directory
+  file:
+    path: /home/{{ ansible_user }}/Documents/git/pagure
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0775
+    recurse: true
+
+- name: Clone personal pagure projects
+  include_tasks: pagure_clone.yaml
+  loop: "{{ pagure_personal_repos }}"

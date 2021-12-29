@@ -1,0 +1,6 @@
+---
+- name: Install basic C and cpp stuff
+  dnf:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ basic_c_and_cpp_stuff }}"

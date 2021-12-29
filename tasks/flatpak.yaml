@@ -1,0 +1,15 @@
+---
+- name: Ensure flatpak is installed
+  dnf:
+    name: flatpak
+    state: latest
+
+- name: Enable flathub
+  command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  changed_when: false
+
+- name: Install flatpak apps
+  flatpak:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ flatpak_apps }}"

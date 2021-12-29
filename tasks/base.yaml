@@ -1,0 +1,38 @@
+---
+- name: Install web browsers
+  block:
+    - name: Install browsers from dnf
+      dnf:
+        name:
+          - chromium
+          - firefox
+        state: latest
+
+    - name: Install google chrome from url
+      dnf:
+        name: "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
+        state: present
+        disable_gpg_check: true
+
+- name: Install base apps
+  dnf:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ base_apps }}"
+
+- name: Add RMPfusion repository [1/2]
+  dnf:
+    name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm"
+    state: present
+    disable_gpg_check: true
+
+- name: Add RMPfusion repository [2/2]
+  dnf:
+    name: "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm"
+    state: present
+    disable_gpg_check: true
+
+- name: Instal ffmpeg
+  dnf:
+    name: ffmpeg
+    state: latest

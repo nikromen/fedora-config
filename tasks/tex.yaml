@@ -1,0 +1,10 @@
+---
+- name: Install texlive
+  dnf:
+    name: texlive-scheme-medium
+    state: latest
+
+- name: Install texmaker
+  dnf:
+    name: texmaker
+    state: latest

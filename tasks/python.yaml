@@ -1,0 +1,6 @@
+---
+- name: Install python3 apps
+  dnf:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ python_dnf_apps }}"

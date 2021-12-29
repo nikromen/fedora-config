@@ -1,0 +1,17 @@
+---
+- name: Install gh
+  snap:
+    name: gh
+
+- name: Create github directory
+  file:
+    path: /home/{{ ansible_user }}/Documents/git/github
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0775
+    recurse: true
+
+- name: Include cloning personal github projects
+  include_tasks: github_clone.yaml
+  loop: "{{ github_personal_repos }}"

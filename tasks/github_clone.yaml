@@ -1,0 +1,14 @@
+---
+- name: Check if repo {{ item }} exists
+  stat:
+    path: "/home/{{ ansible_user }}/Documents/git/github/{{ item }}/"
+  register: dir_data
+
+- name: Clone repo {{ item }}
+  git:
+    repo: "git@github.com:{{ git_user }}/{{ item }}.git"
+    dest: /home/{{ ansible_user }}/Documents/git/github/{{ item }}/
+    update: true
+    version: main
+  become_user: "{{ ansible_user }}"
+  when: not dir_data.stat.exists

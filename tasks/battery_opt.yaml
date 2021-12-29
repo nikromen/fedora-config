@@ -1,0 +1,11 @@
+---
+# https://www.reddit.com/r/linux/comments/a4o03z/get_the_best_out_of_you_battery_on_linux/
+- name: Install tlp
+  dnf:
+    name: tlp
+    state: latest
+
+- name: Install powertop
+  dnf:
+    name: powertop
+    state: latest

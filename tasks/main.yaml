@@ -32,14 +32,14 @@
 - name: Import github config
   import_tasks: github.yaml
 
-# - name: Import gitlab config
-#   import_tasks: gitlab.yaml
-#
-# - name: Import pagure config
-#   import_tasks: pagure.yaml
-#
-# - name: Import IDEs
-#   import_tasks: ide.yaml
+- name: Import gitlab config
+  import_tasks: gitlab.yaml
+
+- name: Import pagure config
+  import_tasks: pagure.yaml
+
+- name: Import IDEs
+  import_tasks: ide.yaml
 
 - name: Import battery optimalization
   import_tasks: battery_opt.yaml

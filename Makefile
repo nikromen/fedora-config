@@ -1,4 +1,3 @@
 run:
-	./warnings/before.sh
+	./warnings.sh
 	ansible-playbook -i hosts -K playbook.yaml
-	./warnings/after.sh

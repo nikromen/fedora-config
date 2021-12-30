@@ -10,6 +10,7 @@ base_apps:
   - hexchat
   - xclip
   - lm_sensors
+  - mediawriter
 
 basic_c_and_cpp_stuff:
   - cmake

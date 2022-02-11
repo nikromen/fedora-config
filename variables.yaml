@@ -11,6 +11,7 @@ base_apps:
   - xclip
   - lm_sensors
   - mediawriter
+  - kate
 
 basic_c_and_cpp_stuff:
   - cmake
@@ -29,6 +30,8 @@ base_dev_tools:
   - nodejs
   - npm
   - dotnet
+  - podman-compose
+  - postgresql
 
 git_utils:
   - pre-commit
@@ -41,6 +44,7 @@ ides:
 
 pip_apps:
   - konsave
+  - flask-restx
 
 python_dnf_apps:
   - python3-devel

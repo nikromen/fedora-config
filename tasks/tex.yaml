@@ -1,7 +1,12 @@
 ---
 - name: Install texlive
   dnf:
-    name: texlive-scheme-medium
+    name:
+      - texlive-collection-latex
+      - texlive-collection-xetex
+      - texlive-collection-latexrecommended
+      - texlive-collection-langenglish
+      - texlive-collection-langczechslovak
     state: latest
 
 - name: Install texmaker

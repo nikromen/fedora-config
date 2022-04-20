@@ -4,10 +4,8 @@ base_apps:
   - gimp
   - ark
   - htop
-  - keepassxc
   - latte-dock
   - ocrmypdf
-  - hexchat
   - xclip
   - lm_sensors
   - mediawriter
@@ -27,9 +25,7 @@ base_dev_tools:
   - packit
   - golang
   - hugo
-  - nodejs
   - npm
-  - dotnet
   - podman-compose
   - postgresql
 
@@ -63,3 +59,5 @@ flatpak_apps:
   - org.signal.Signal
   - com.spotify.Client
   - org.telegram.desktop
+  - com.bitwarden.desktop
+  - im.riot.Riot

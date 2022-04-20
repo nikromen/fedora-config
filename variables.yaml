@@ -1,7 +1,5 @@
 ---
 base_apps:
-  - filezilla
-  - gimp
   - ark
   - htop
   - latte-dock
@@ -61,3 +59,5 @@ flatpak_apps:
   - org.telegram.desktop
   - com.bitwarden.desktop
   - im.riot.Riot
+  - org.filezillaproject.Filezilla
+  - org.gimp.GIMP

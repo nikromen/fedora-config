@@ -3,3 +3,11 @@
   dnf:
     name: fish
     state: latest
+
+- name: Import fish config
+  copy:
+    src: ../data/confiles/shell/fish/config.fish
+    dest: /home/{{ ansible_user }}/.config/fish/config.fish
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0664

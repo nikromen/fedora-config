@@ -1,15 +1,15 @@
 ---
 - name: Copy shell conf to config folder
   copy:
-    src: ../data/confiles/shell/
-    dest: /home/{{ ansible_user }}/.config/shell
+    src: ../data/confiles/shell/bash
+    dest: /home/{{ ansible_user }}/.config/bash
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: 0664
 
 # command can't handle grep
 - name: Test for bash addons in .bashrc
-  shell: grep -c ".config/shell" /home/{{ ansible_user }}/.bashrc || true
+  shell: grep -c ".config/bash" /home/{{ ansible_user }}/.bashrc || true
   changed_when: false
   register: test_addons
   become_user: "{{ ansible_user }}"
@@ -19,18 +19,18 @@
     path: /home/{{ ansible_user }}/.bashrc
     block: |
       # useful aliases
-      if [ -e $HOME/.config/shell/aliases ]; then
-          source $HOME/.config/shell/aliases
+      if [ -e $HOME/.config/bash/aliases ]; then
+          source $HOME/.config/bash/aliases
       fi
 
       # useful variables (mostly paths)
-      if [ -e $HOME/.config/shell/variables ]; then
-          source $HOME/.config/shell/variables
+      if [ -e $HOME/.config/bash/variables ]; then
+          source $HOME/.config/bash/variables
       fi
 
       # useful shell scripts
-      if [ -e $HOME/.config/shell/scripts ]; then
-          source $HOME/.config/shell/scripts
+      if [ -e $HOME/.config/bash/scripts ]; then
+          source $HOME/.config/bash/scripts
       fi
 
   when: test_addons.stdout == "0"

@@ -1,0 +1,26 @@
+---
+- name: Install konsave
+  become_user: "{{ ansible_user }}"
+  pip:
+    name: konsave
+    extra_args: --user
+
+- name: Apply the best KDE profile
+  block:
+    - name: Copy konsave profile to host
+      copy:
+        src: ../data/confiles/konsave/the-best-kde-profile.knsv
+        dest: /tmp
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: 0777
+
+    - name: Import konsave profile
+      command: konsave -i /tmp/the-best-kde-profile.knsv
+      changed_when: false
+      become_user: "{{ ansible_user }}"
+
+    - name: Apply the best KDE profile
+      command: konsave -a the-best-kde-profile
+      changed_when: false
+      become_user: "{{ ansible_user }}"

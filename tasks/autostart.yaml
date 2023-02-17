@@ -1,0 +1,61 @@
+---
+- name: Create autostart-scripts directory
+  file:
+    path: /home/{{ ansible_user }}/.config/startup-scripts/
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+    mode: 0755
+
+- name: Add autostart-scripts DE
+  copy:
+    src: ../data/confiles/autostart/{{ item }}
+    dest: /home/{{ ansible_user }}/.config/startup-scripts/{{ item }}
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0644
+  loop:
+    - conky-startup.sh
+  tags:
+    - de
+
+- name: Install crontab
+  dnf:
+    name: cronie
+    state: latest
+
+- name: Start crond service
+  systemd:
+    state: started
+    name: crond
+
+- name: Enable crond service
+  systemd:
+    name: crond
+    enabled: true
+# This does not work...
+
+#- name: Get all scripts in autostart
+#  find:
+#    paths: /home/{{ ansible_user }}/.config/startup-scripts/
+#    patterns: "*.sh"
+#  register: autostart_scripts
+#
+#- name: Create an entry like "@reboot {{ item }} from startup-scripts
+#  become_user: "{{ ansible_user }}"
+#  cron:
+#    name: "a job for reboot"
+#    special_time: reboot
+#    user: "{{ ansible_user }}"
+#    job: "{{ item }}"
+#  with_items: "{{ autostart_scripts.files }}"
+#
+#- name: Autostart other DE thingy
+#  become_user: "{{ ansible_user }}"
+#  cron:
+#    name: "a job for reboot"
+#    special_time: reboot
+#    user: "{{ ansible_user }}"
+#    job: "{{ item }}"
+#  loop:
+#    - /usr/bin/latte-dock

@@ -1,0 +1,8 @@
+.idea/
+__pycache__/
+
+# ignore my personal hosts - do it yourself
+hosts
+
+# ignore these variables - contains personal data (email, your github repos, etc.) - do it yourself
+personal_variables.yaml

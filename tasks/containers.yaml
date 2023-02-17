@@ -1,0 +1,15 @@
+---
+- name: Install ansible bender
+  dnf:
+    name: ansible-bender
+    state: latest
+
+- name: Install buildah
+  dnf:
+    name: buildah
+    state: latest
+
+- name: Install podman tools
+  dnf:
+    name: "{{ podman }}"
+    state: latest

@@ -1,0 +1,41 @@
+---
+- name: Install git
+  dnf:
+    name: git
+    state: latest
+
+- name: Install pre-commit
+  dnf:
+    name: pre-commit
+    state: latest
+  tags:
+    - dev
+
+- name: Set the .gitconfig file from confiles
+  copy:
+    src: ../data/confiles/git/.gitconfig
+    dest: /home/{{ ansible_user }}/
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0664
+
+- name: Install git utils
+  dnf:
+    name: "{{ git_utils }}"
+    state: latest
+
+- name: Install GUI git utils
+  dnf:
+    name: "{{ git_utils_de }}"
+    state: latest
+  tags:
+    - de
+
+- name: Create git directory
+  file:
+    path: /home/{{ ansible_user }}/Documents/git/
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0775
+    recurse: true

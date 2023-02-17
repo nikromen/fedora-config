@@ -1,0 +1,12 @@
+---
+- name: Install texlive
+  dnf:
+    name: "{{ tex }}"
+    state: latest
+
+- name: Install texmaker
+  become_user: "{{ ansible_user }}"
+  flatpak:
+    name: net.xm1math.Texmaker
+    state: present
+    method: user

@@ -1,0 +1,93 @@
+---
+- name: Bootstrap the system, install KDE using wayland
+  import_tasks: bootstrap.yaml
+
+- name: Install base apps from dnf
+  dnf:
+    name: "{{ base_apps }}"
+    state: latest
+
+- name: Install GUI base apps from dnf
+  dnf:
+    name: "{{ base_apps_de }}"
+    state: latest
+  tags:
+    - de
+
+- name: Import langs support
+  import_tasks: langs.yaml
+  tags:
+    - langs
+
+- name: Import python conf
+  import_tasks: python.yaml
+
+- name: Import ssh config
+  import_tasks: ssh.yaml
+
+- name: Import pip
+  become_user: "{{ ansible_user }}"
+  import_tasks: pip.yaml
+
+- name: Import devel tools
+  import_tasks: dev_tools.yaml
+  tags:
+    - dev
+
+- name: Import flatpak
+  become_user: "{{ ansible_user }}"
+  import_tasks: flatpak.yaml
+
+- name: Import snap
+  import_tasks: snap.yaml
+  tags:
+    - snap
+
+- name: Import shell config
+  import_tasks: shell.yaml
+
+- name: Import git
+  import_tasks: git.yaml
+
+- name: Import git forges
+  import_tasks: forges.yaml
+
+- name: Import battery optimalization
+  import_tasks: battery_opt.yaml
+  tags:
+    - battery
+
+- name: Import vim config
+  import_tasks: vim.yaml
+  tags:
+    - vim
+
+- name: Import tex
+  import_tasks: tex.yaml
+  tags:
+    - tex
+    - de
+
+- name: Import container stuff
+  import_tasks: containers.yaml
+
+- name: Import conky
+  import_tasks: conky.yaml
+  tags:
+    - de
+
+- name: Import script which should be run at startup
+  import_tasks: autostart.yaml
+
+- name: Import KDE config
+  import_tasks: kde_config.yaml
+  tags:
+    - de
+
+- name: Remove bloatware
+  import_tasks: bloat.yaml
+  tags:
+    - bloat
+
+- name: Reboot
+  import_tasks: reboot.yaml

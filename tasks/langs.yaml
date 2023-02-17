@@ -1,0 +1,19 @@
+---
+- name: Install basic lang support
+  dnf:
+    name: "{{ base_langs }}"
+    state: latest
+
+- name: Install js
+  dnf:
+    name: "{{ js }}"
+    state: latest
+  tags:
+    - js
+
+- name: Install weird langs
+  dnf:
+    name: "{{ weird_langs }}"
+    state: latest
+  tags:
+    - weird_lags

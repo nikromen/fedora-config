@@ -1,0 +1,30 @@
+# currently used only for games
+---
+- name: Install snap
+  dnf:
+    name: snapd
+    state: latest
+  register: snap
+
+- name: Reboot after installing snap
+  import_tasks: reboot.yaml
+  when: snap.changed
+
+- name: Set snap symlink
+  file:
+    src: /var/lib/snapd/snap
+    dest: /snap
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: link
+  register: snap_sym
+
+- name: Reboot after setting up snap symlink
+  import_tasks: reboot.yaml
+  when: snap_sym.changed
+
+- name: Install snap apps
+  snap:
+    name: "{{ snap_apps }}"
+  tags:
+    - games

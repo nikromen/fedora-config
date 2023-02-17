@@ -1,0 +1,28 @@
+---
+- hosts: all
+  # when there is need to run as user - specify
+  become: true
+
+  vars_files:
+    - variables.yaml
+
+  ignore_errors: true
+  tasks:
+    # to login again after reboot
+    - name: Enable ssh
+      systemd:
+        name: sshd
+        enabled: true
+      ignore_errors: false
+
+    - name: Update the system
+      dnf:
+        name: "*"
+        state: latest
+      register: upgrade
+
+    - name: Reboot
+      import_tasks: tasks/reboot.yaml
+      when: upgrade.changed
+
+    - import_tasks: tasks/main.yaml

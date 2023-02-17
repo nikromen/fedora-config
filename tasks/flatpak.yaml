@@ -1,0 +1,52 @@
+---
+- name: Ensure flatpak is installed
+  become_user: root
+  dnf:
+    name: flatpak
+    state: latest
+
+- name: Enable flathub
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+    method: user
+
+- name: Install basic flatpak apps
+  flatpak:
+    name: "{{ item }}"
+    state: present
+    method: user
+  loop: "{{ flatpak_base_apps }}"
+  tags:
+    - de
+
+- name: Install IDEs
+  flatpak:
+    name: "{{ item }}"
+    state: present
+    method: user
+  loop: "{{ flatpak_ides }}"
+  tags:
+    - ide
+    - de
+
+- name: Install dev tools
+  flatpak:
+    name: "{{ item }}"
+    state: present
+    method: user
+  loop: "{{ flatpak_dev_apps }}"
+  tags:
+    - dev
+    - de
+
+- name: Install games
+  flatpak:
+    name: "{{ item }}"
+    state: present
+    method: user
+  loop: "{{ flatpak_games }}"
+  tags:
+    - games
+    - de

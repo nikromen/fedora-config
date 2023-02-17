@@ -1,0 +1,23 @@
+---
+- name: Install base dev tools
+  dnf:
+    name: "{{ base_dev_tools }}"
+    state: latest
+
+- name: Install more dev tools
+  dnf:
+    name: "{{ more_dev_tools }}"
+    state: latest
+  tags:
+    - dev_full
+
+- name: Set up mock
+  command: usermod -a -G mock {{ ansible_user }}
+  become_user: root
+  tags:
+    - dev_full
+
+- name: Install virtualization tools
+  dnf:
+    name: "@virtualization"
+    state: latest

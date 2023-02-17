@@ -1,0 +1,54 @@
+---
+- name: Setup hardware support
+  dnf:
+    name: "@hardware-support"
+    state: latest
+
+- name: Setup network
+  dnf:
+    name: "@networkmanager-submodules"
+    state: latest
+
+- name: Setup fonts
+  dnf:
+    name: "@fonts"
+    state: latest
+
+- name: Install sound stuff - @multimedia
+  dnf:
+    name: "@multimedia"
+    state: latest
+
+- name: Install basic system apps
+  dnf:
+    name: "{{ system_apps }}"
+    state: latest
+
+- name: Set 10sec of timeout on grub terminal output console
+  command: vi /boot/grub2/grub.cfg -c "%s/set timeout=5/set timeout=10/g" -c wqa
+  become_user: root
+  changed_when: false
+
+- name: Install sddm, wayland, KDE and KDE SW
+  dnf:
+    name: "{{ kde }}"
+    state: latest
+  tags:
+    - minimalistic
+
+- name: Enable sddm
+  systemd:
+    name: sddm
+    enabled: true
+  tags:
+    - minimalistic
+
+- name: Set default graphical.target
+  command: systemctl set-default graphical.target
+  become_user: root
+  changed_when: false
+  tags:
+    - minimalistic
+
+- name: Reboot (and boot to KDE :))
+  import_tasks: reboot.yaml

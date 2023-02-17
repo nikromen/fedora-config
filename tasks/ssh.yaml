@@ -1,0 +1,10 @@
+---
+- name: Install openssh-server
+  dnf:
+    name: openssh-server
+    state: latest
+
+- name: Install openssh-client
+  dnf:
+    name: openssh-clients
+    state: latest

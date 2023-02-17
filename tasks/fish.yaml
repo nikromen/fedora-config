@@ -1,0 +1,5 @@
+---
+- name: Install fish
+  dnf:
+    name: fish
+    state: latest

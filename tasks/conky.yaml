@@ -1,0 +1,21 @@
+---
+- name: Install conky
+  dnf:
+    name: conky
+    state: latest
+
+- name: Create conky directory
+  file:
+    path: /home/{{ ansible_user }}/.config/conky/
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+    mode: 0775
+
+- name: Copy conky config
+  copy:
+    src: ../data/confiles/conky/
+    dest: /home/{{ ansible_user }}/.config/conky
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0644

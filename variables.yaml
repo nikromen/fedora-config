@@ -1,0 +1,148 @@
+---
+system_apps:
+  - gcc
+  - gcc-c++
+  - setroubleshoot
+  - cagibi
+  - cups-pk-helper
+  - glibc-langpack-en
+  - glibc-langpack-cs
+  - firewall-config
+  - pptp
+  - vpnc
+
+# these will install a bunch of other dependencies
+kde:
+  - sddm
+  - sddm-breeze
+  - sddm-kcm
+  - kwin-wayland
+  - plasma-desktop
+  - plasma-desktop-doc
+  - kscreen
+  - kscreenlocker
+  - kfind
+  - kf5-kipi-plugins
+  - colord-kde
+  - kdnssd
+  - kde-style-breeze
+  - kf5-akonadi-server
+  - kf5-akonadi-server-mysql
+  - kf5-baloo-file
+  - kde-settings-pulseaudio
+  - kde-print-manager
+  - kcm_systemd
+  - kwebkitpart
+  - pinentry-qt
+  - bluedevil
+  - spectacle
+  - plasma-nm
+  - plasma-nm-l2tp
+  - plasma-nm-openconnect
+  - plasma-nm-openvpn
+  - plasma-nm-pptp
+  - plasma-nm-vpnc
+  - plasma-nm-openswan
+  - plasma-pa
+  - kde-gtk-config
+  - kdeplasma-addons
+  - dolphin
+  - dolphin-plugins
+  - kate
+  - kdegraphics-thumbnailers
+  - kdialog
+  - yakuake
+
+base_apps:
+  - htop
+  - xclip
+  - lm_sensors
+  - python3-devel
+  - vi
+  - openconnect
+  - openvpn
+  - cmake
+  - valgrind
+  - cppcheck
+  - make
+
+base_apps_de:
+  - ark
+  - latte-dock
+  - ocrmypdf
+  - mediawriter
+  - ffmpeg-free
+
+base_langs:
+  - java-latest-openjdk
+  - java-latest-openjdk-devel
+  - golang
+  - rust
+  - cargo
+
+js:
+  - nodejs
+  - npm
+
+weird_langs:
+  - haskell-platform
+
+base_dev_tools:
+  - postgresql
+  - pipenv
+
+more_dev_tools:
+  - copr-cli
+  - packit
+  - mock
+  - hugo
+  - rpmdevtools
+
+flatpak_base_apps:
+  - com.obsproject.Studio
+  - com.discordapp.Discord
+  - org.signal.Signal
+  - com.spotify.Client
+  - org.telegram.desktop
+  - com.bitwarden.desktop
+  - im.riot.Riot
+  - org.gimp.GIMP
+  - com.google.Chrome
+  - org.libreoffice.LibreOffice
+  - org.videolan.VLC
+  - org.kde.okular
+  - org.kde.gwenview
+  - org.mozilla.firefox
+
+flatpak_ides:
+  - com.jetbrains.PyCharm-Community
+  - com.visualstudio.code
+
+flatpak_dev_apps:
+  - rest.insomnia.Insomnia
+  - org.filezillaproject.Filezilla
+
+flatpak_games:
+  - com.valvesoftware.Steam
+  - com.play0ad.zeroad
+
+# without `--classic` arg
+snap_apps:
+  - tmnationsforever
+
+git_utils:
+  - tig
+
+git_utils_de:
+  - gitk
+
+tex:
+  - texlive-collection-latex
+  - texlive-collection-xetex
+  - texlive-collection-latexrecommended
+  - texlive-collection-langenglish
+  - texlive-collection-langczechslovak
+
+podman:
+  - podman
+  - podman-compose

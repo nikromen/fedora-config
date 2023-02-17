@@ -1,0 +1,53 @@
+---
+- name: Install vim
+  dnf:
+    name: vim-enhanced
+    state: latest
+
+- name: .vim... Create ~/.vim/autoload/ directories
+  file:
+    path: "/home/{{ ansible_user }}/{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+    mode: 0750
+  loop:
+    - .vim/
+    - .vim/autoload/
+
+- name: Download plug.vim and put it in the autoload dir
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: /home/{{ ansible_user }}/.vim/autoload/plug.vim
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0664
+
+- name: Copy vim config
+  copy:
+    src: ../data/confiles/vim/.vimrc
+    dest: /home/{{ ansible_user }}/
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0664
+
+- name: Install vim plugins
+  command: vim /home/{{ ansible_user }}/.vimrc -c PlugInstall -c wqa
+  changed_when: false
+  become_user: "{{ ansible_user }}"
+
+- name: Install YouCompleteMe
+  block:
+    - name: Check for the prerequisites
+      dnf:
+        name:
+          - cmake
+          - gcc-c++
+          - make
+          - python3-devel
+        state: latest
+
+    - name: Execute install script for YouCompleteMe
+      command: python3 /home/{{ ansible_user }}/.vim/plugged/YouCompleteMe/install.py --all
+      changed_when: false
+      become_user: "{{ ansible_user }}"

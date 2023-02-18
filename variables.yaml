@@ -112,7 +112,6 @@ flatpak_base_apps:
   - org.videolan.VLC
   - org.kde.okular
   - org.kde.gwenview
-  - org.mozilla.firefox
 
 flatpak_ides:
   - com.jetbrains.PyCharm-Community
